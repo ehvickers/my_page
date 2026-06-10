@@ -3,52 +3,440 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+    <meta name="description" content="Writing, technical documentation, research, patent, publication, and fiction samples by Edward Vickers.">
+    <title>Edward Vickers | Writing and Documentation Samples</title>
     <style>
+        :root {
+            --bg: #f7f5f1;
+            --panel: #ffffff;
+            --ink: #1f2933;
+            --muted: #5f6c7b;
+            --line: #d9d2c7;
+            --accent: #1f5f7a;
+            --accent-dark: #133f52;
+            --soft: #eaf3f6;
+            --tag: #eef0f2;
+            --max: 1080px;
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            background-color: #0d1117;
-            color: #c9d1d9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--ink);
+            background: var(--bg);
         }
-        .container {
-            text-align: center;
-            padding: 20px;
+
+        a {
+            color: var(--accent);
+            text-decoration-thickness: 0.08em;
+            text-underline-offset: 0.18em;
         }
-        h1 {
-            font-size: 2.5rem;
-            color: #f0f6fc;
-            margin-bottom: 10px;
+
+        a:hover,
+        a:focus { color: var(--accent-dark); }
+
+        .site-header {
+            background: linear-gradient(135deg, #16212b 0%, #1f5f7a 100%);
+            color: #fff;
+            padding: 4rem 1.25rem 3rem;
         }
-        p {
-            font-size: 1.2rem;
-            color: #8b949e;
-            margin-bottom: 25px;
-        }
-        .spinner {
-            border: 4px solid rgba(240, 246, 252, 0.1);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border-left-color: #58a6ff;
-            animation: spin 1s linear infinite;
+
+        .wrap {
+            width: min(100% - 2rem, var(--max));
             margin: 0 auto;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        .eyebrow {
+            margin: 0 0 0.75rem;
+            color: #cfe5ee;
+            font-size: 0.95rem;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(2.2rem, 5vw, 4.25rem);
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+        }
+
+        .lede {
+            max-width: 760px;
+            margin: 1.1rem 0 0;
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: #edf7fa;
+        }
+
+        .header-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.72rem 1rem;
+            border-radius: 999px;
+            background: #fff;
+            color: var(--accent-dark);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .button.secondary {
+            background: rgba(255,255,255,0.13);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.38);
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255,255,255,0.95);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(8px);
+        }
+
+        nav .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem 1rem;
+            padding: 0.7rem 1rem;
+        }
+
+        nav a {
+            color: var(--ink);
+            font-size: 0.95rem;
+            font-weight: 650;
+            text-decoration: none;
+        }
+
+        main { padding: 2rem 0 3.5rem; }
+
+        section {
+            margin: 0 0 1.5rem;
+            padding: 1.5rem;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            box-shadow: 0 8px 22px rgba(31,41,51,0.04);
+        }
+
+        h2 {
+            margin: 0 0 0.4rem;
+            font-size: clamp(1.55rem, 3vw, 2rem);
+            line-height: 1.15;
+        }
+
+        h3 {
+            margin: 1.35rem 0 0.4rem;
+            color: #27323d;
+            font-size: 1.15rem;
+        }
+
+        .section-note {
+            margin: 0 0 1rem;
+            color: var(--muted);
+        }
+
+        .item-list {
+            display: grid;
+            gap: 0.85rem;
+            margin: 1rem 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .item {
+            padding: 1rem;
+            border: 1px solid #e4ded5;
+            border-radius: 14px;
+            background: #fffdf9;
+        }
+
+        .item-title {
+            margin: 0;
+            font-weight: 750;
+            font-size: 1.05rem;
+        }
+
+        .item-meta {
+            margin: 0.3rem 0 0;
+            color: var(--muted);
+            font-size: 0.96rem;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.65rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.2rem 0.55rem;
+            border-radius: 999px;
+            background: var(--tag);
+            color: #435160;
+            font-size: 0.82rem;
+            font-weight: 650;
+        }
+
+        .status {
+            color: #775a16;
+            background: #fff4ce;
+        }
+
+        .grid-two {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .callout {
+            padding: 1rem;
+            background: var(--soft);
+            border-left: 4px solid var(--accent);
+            border-radius: 12px;
+            color: #294352;
+        }
+
+        footer {
+            padding: 2rem 1rem;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .contact-line {
+            margin: 0;
+            font-weight: 650;
+        }
+
+        .small { font-size: 0.92rem; }
+
+        /*
+            Draft / invisible document pattern:
+            - Keep future items in the HTML with class="draft hidden".
+            - They will not display because .hidden is set to display: none.
+            - To publish one, remove the word "hidden" and replace href="#" with the real URL.
+        */
+        .hidden { display: none; }
+
+        @media (max-width: 680px) {
+            .site-header { padding-top: 3rem; }
+            section { padding: 1.1rem; border-radius: 14px; }
+            nav { position: static; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Building Something Great</h1>
-        <p>This site is currently under construction. Check back soon!</p>
-        <div class="spinner"></div>
-    </div>
+    <header class="site-header" id="top">
+        <div class="wrap">
+            <p class="eyebrow">Writing & Documentation Samples</p>
+            <h1>Edward Vickers</h1>
+            <p class="lede">Technical papers, documentation samples, research references, patent work, and selected fiction by an engineer, analyst, and writer.</p>
+            <div class="header-actions">
+                <a class="button" href="#technical-papers">View technical samples</a>
+                <a class="button secondary" href="mailto:edwardvickers@creeklinegroup.com">Contact Edward</a>
+            </div>
+        </div>
+    </header>
+
+    <nav aria-label="Main navigation">
+        <div class="wrap">
+            <a href="#technical-papers">Technical Papers</a>
+            <a href="#essays">Essays</a>
+            <a href="#patents">Patents</a>
+            <a href="#publications">Publications</a>
+            <a href="#fiction">Fiction</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <main class="wrap">
+        <section id="technical-papers">
+            <h2>Technical Papers and Reports</h2>
+            <ul class="item-list">
+                <li class="item">
+                    <p class="item-title"><a href="https://github.com/ehvickers/dealership-supply-chain-management">Supply Chain Management in Automotive Dealership Operations</a></p>
+                    <p class="item-meta">A technical/business analysis of dealership parts operations and supply-chain flow.</p>
+                    <div class="tag-row"><span class="tag">Supply chain</span><span class="tag">Operations analysis</span><span class="tag">GitHub</span></div>
+                </li>
+
+                <li class="item">
+                    <p class="item-title">Automotive Retail VoIP Troubleshooting Report</p>
+                    <p class="item-meta">Troubleshooting report for voice and network issues in an automotive retail environment.</p>
+                    <div class="tag-row"><span class="tag status">Pending upload</span><span class="tag">Troubleshooting</span><span class="tag">Networking</span></div>
+                </li>
+
+                <li class="item">
+                    <p class="item-title">Automotive Retail Customer Service Counter Flow Analysis</p>
+                    <p class="item-meta">Process-flow analysis for counter service, customer handling, and operational friction in an automotive parts retailer.</p>
+                    <div class="tag-row"><span class="tag status">Pending upload</span><span class="tag">Process analysis</span><span class="tag">Retail operations</span></div>
+                </li>
+
+                <li class="item">
+                    <p class="item-title">Using the Battery Tester</p>
+                    <p class="item-meta">Procedural documentation for correct and consistent battery-tester use.</p>
+                    <div class="tag-row"><span class="tag status">Pending upload</span><span class="tag">Procedure</span><span class="tag">Technical documentation</span></div>
+                </li>
+
+                <li class="item">
+                    <p class="item-title">Reinterpretation of a Voltage Divider as a Feedback Loop</p>
+                    <p class="item-meta">A short technical explanation connecting a basic circuit concept to feedback-system interpretation.</p>
+                    <div class="tag-row"><span class="tag status">Pending upload</span><span class="tag">Electrical engineering</span><span class="tag">Control systems</span></div>
+                </li>
+
+                <!-- Example hidden draft item. Remove "hidden" and add a real href when ready. -->
+                <li class="item draft hidden">
+                    <p class="item-title"><a href="#">Future Technical Paper Title</a></p>
+                    <p class="item-meta">Short description goes here. This item is already in the HTML but invisible until activated.</p>
+                    <div class="tag-row"><span class="tag status">Draft</span></div>
+                </li>
+            </ul>
+
+            <div class="callout" style="margin-top: 1rem;">
+                <strong>Posting note:</strong> Uploades for these documents and others pending.
+            </div>
+        </section>
+
+        <section id="essays">
+            <h2>Essays</h2>
+            <p class="section-note">Long-form essays and selected public commentary.</p>
+
+            <ul class="item-list">
+                <li class="item">
+                    <p class="item-title">On Canada</p>
+                    <p class="item-meta"></p>
+                    <div class="tag-row"><span class="tag status">Pending link</span></div>
+                </li>
+            </ul>
+        </section>
+
+        <section id="patents">
+            <h2>Patents</h2>
+            <p class="section-note">Issued patent work and related technical invention history.</p>
+
+            <ul class="item-list">
+                <li class="item">
+                    <p class="item-title"><a href="https://ppubs.uspto.gov/pubwebapp/static/pages/ppubsbasic.html" aria-label="Search USPTO Patent Public Search for patent 5592176">Tracking System for Tracking a Moving Signal Source</a></p>
+                    <p class="item-meta">U.S. Patent No. 5,592,176. Because USPTO direct PDF links can expire, this page links to the USPTO search page rather than a temporary download URL.</p>
+                    <div class="tag-row"><span class="tag">Patent</span><span class="tag">Signal tracking</span><span class="tag">Systems engineering</span></div>
+                </li>
+            </ul>
+        </section>
+
+        <section id="publications">
+            <h2>Publications</h2>
+            <p class="section-note">Academic publications, thesis work, conference papers, and future research papers.</p>
+
+            <ul class="item-list">
+                <li class="item">
+                    <p class="item-title">Derivation, Estimation, and Control of an Environmental Plant Growth Chamber</p>
+                    <p class="item-meta">Master's thesis, Clemson University Graduate School, August 1987.</p>
+                    <div class="tag-row"><span class="tag">Thesis</span><span class="tag">Control systems</span><span class="tag">Estimation</span></div>
+                </li>
+
+                <li class="item">
+                    <p class="item-title">Optimal Estimation and Control of an Environmental Plant Growth Chamber</p>
+                    <p class="item-meta">First Southeastern Symposium on System Theory, IEEE Computer Society, March 1, 1989.</p>
+                    <div class="tag-row"><span class="tag">Conference paper</span><span class="tag">IEEE</span><span class="tag">Control systems</span></div>
+                </li>
+
+                <li class="item draft hidden">
+                    <p class="item-title"><a href="#">Future PhD-by-publication paper title</a></p>
+                    <p class="item-meta">Placeholder for future research paper or abstract link.</p>
+                    <div class="tag-row"><span class="tag status">Draft</span></div>
+                </li>
+            </ul>
+        </section>
+
+        <section id="fiction">
+            <h2>Fiction</h2>
+            <p class="section-note">Unpublished novels, other fiction, and selected fanfiction. Published novels can be added as a separate section later.</p>
+
+            <div class="grid-two">
+                <div>
+                    <h3>Unpublished Novels</h3>
+                    <ul class="item-list">
+                        <li class="item">
+                            <p class="item-title">In the Garden at Dawn: A Love Story Beyond Time</p>
+                            <p class="item-meta">Fantasy romance.</p>                        
+						</li>
+                        <li class="item">
+                            <p class="item-title">A Complicated Love Story</p>
+							<p class="item-meta">Modern romance.</p>  
+                        </li>
+                        <li class="item">
+                            <p class="item-title">Light in the Underworld</p>
+                            <p class="item-meta">Science fiction drama.”</p>
+                        </li>
+                        <li class="item">
+                            <p class="item-title">The Ancient Age of Reason</p>
+                            <p class="item-meta">Historical science fiction drama.”</p>
+                        </li>
+                        <li class="item">
+                            <p class="item-title">Push Back the Darkness</p>
+                            <p class="item-meta">Religious horror.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Other Fiction</h3>
+                    <ul class="item-list">
+                        <li class="item">
+                            <p class="item-title">Lovecraft: A Better Life</p>
+                            <p class="item-meta">An Other story.</p>
+                            <div class="tag-row"><span class="tag status">Pending link</span></div>
+                        </li>
+                    </ul>
+
+                    <h3>Fanfiction</h3>
+                    <ul class="item-list">
+                        <li class="item">
+                            <p class="item-title"><a href="https://archiveofourown.org/works/71291016/chapters/185501216">Redemption: A Mortal Life</a></p>
+                            <p class="item-meta">Posted on Archive of Our Own.</p>
+                            <div class="tag-row"><span class="tag">AO3</span></div>
+                        </li>
+                        <li class="item">
+                            <p class="item-title"><a href="https://archiveofourown.org/works/71616976">Galadriel's Dream</a></p>
+                            <p class="item-meta">Posted on Archive of Our Own.</p>
+                            <div class="tag-row"><span class="tag">AO3</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p class="section-note">For documentation, analysis, writing, and related inquiries.</p>
+            <p class="contact-line"><a href="mailto:edwardvickers@creeklinegroup.com">edwardvickers@creeklinegroup.com</a></p>
+            <p class="small">This address can be replaced later when email is active for ehvickers.com.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Edward Vickers. All rights reserved.</p>
+        <p class="small"><a href="#top">Back to top</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
